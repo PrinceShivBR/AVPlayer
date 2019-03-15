@@ -1,22 +1,12 @@
 package com.avplayer.audio.activity;
 
-import android.annotation.TargetApi;
-import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
-import android.media.MediaMetadata;
-import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import com.avplayer.AVPlayerApplication;
 
 import java.io.IOException;
 
@@ -46,7 +36,7 @@ public class AudioPlayActivity extends AppCompatActivity implements AudioManager
         mediaPlayer = new MediaPlayer();
         try {
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setDataSource(AVPlayerApplication.getAppContext(), Uri.parse(mFileUrl));
+//            mediaPlayer.setDataSource(AVPlayerApplication.getAppContext(), Uri.parse(mFileUrl));
             mediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();

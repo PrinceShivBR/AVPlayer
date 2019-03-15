@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +43,14 @@ public class AudioFileListAdapter extends RecyclerView.Adapter<AudioFileListAdap
         fileViewHolder.tvFileName.setTag(fileItemList.get(i).getFilePath());
         fileViewHolder.tvFileName.setOnClickListener(this);
         fileViewHolder.ivOptions.setOnClickListener(this);
+        fileViewHolder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+
+                }
+            }
+        });
     }
 
     @Override
@@ -65,11 +75,13 @@ public class AudioFileListAdapter extends RecyclerView.Adapter<AudioFileListAdap
     class FileViewHolder extends RecyclerView.ViewHolder {
         TextView tvFileName;
         ImageView ivOptions;
+        CheckBox cbSelect;
 
         FileViewHolder(@NonNull View itemView) {
             super(itemView);
             tvFileName = itemView.findViewById(R.id.tv_file_name);
             ivOptions = itemView.findViewById(R.id.iv_options);
+            cbSelect=itemView.findViewById(R.id.cb_delete);
         }
     }
 }

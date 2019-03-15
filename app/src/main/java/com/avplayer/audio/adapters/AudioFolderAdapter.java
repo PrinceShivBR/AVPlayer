@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.avplayer.R;
 import com.avplayer.audio.activity.AudioFolderListActivity;
 import com.avplayer.audio.fragments.AudioFilesListFragment;
-import com.avplayer.video.activity.VideoFolderListActivity;
-import com.avplayer.video.fragments.FilesListFragment;
 import com.avplayer.video.models.Folder;
 
 import java.util.List;

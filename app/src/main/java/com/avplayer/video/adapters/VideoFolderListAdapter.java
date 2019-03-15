@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.avplayer.R;
 import com.avplayer.video.activity.VideoFolderListActivity;
-import com.avplayer.video.fragments.FilesListFragment;
+import com.avplayer.video.fragments.VideoFilesListFragment;
 import com.avplayer.video.models.Folder;
 
 import java.util.List;
@@ -20,11 +20,11 @@ import java.util.List;
 /**
  * Created by shivappar.b on 08-03-2019
  */
-public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.FolderViewHolder> {
+public class VideoFolderListAdapter extends RecyclerView.Adapter<VideoFolderListAdapter.FolderViewHolder> {
     private List<Folder> folderList;
     private Context context;
 
-    public FolderListAdapter(List<Folder> folderList, Context context) {
+    public VideoFolderListAdapter(List<Folder> folderList, Context context) {
         this.folderList = folderList;
         this.context = context;
     }
@@ -44,7 +44,7 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Fo
         folderHolder.cvFolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FilesListFragment fragment = FilesListFragment.getInstance(folderList.get(i).getFolderPath());
+                VideoFilesListFragment fragment = VideoFilesListFragment.getInstance(folderList.get(i).getFolderPath());
                 ((VideoFolderListActivity) context).showTransition(fragment, getCapitalisedWord(folderList.get(i).getFolderName()));
             }
         });

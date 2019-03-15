@@ -5,12 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.avplayer.R;
-import com.avplayer.video.fragments.FilesListFragment;
-import com.avplayer.video.fragments.FolderListFragment;
+import com.avplayer.video.fragments.VideoFilesListFragment;
+import com.avplayer.video.fragments.VideoFolderListFragment;
 
 /**
  * Created by shivappar.b on 08-03-2019
@@ -31,12 +30,12 @@ public class VideoFolderListActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.root, new FolderListFragment(), "MainFragment");
+        transaction.add(R.id.root, new VideoFolderListFragment(), "MainFragment");
         transaction.addToBackStack("MainFragment");
         transaction.commit();
     }
 
-    public void showTransition(FilesListFragment fragment, String folderName) {
+    public void showTransition(VideoFilesListFragment fragment, String folderName) {
         toolBarText.setText(folderName);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.root, fragment);

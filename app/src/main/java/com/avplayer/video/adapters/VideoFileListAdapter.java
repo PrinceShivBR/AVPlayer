@@ -21,11 +21,11 @@ import java.util.List;
 /**
  * Created by shivappar.b on 08-03-2019
  */
-public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileViewHolder> {
+public class VideoFileListAdapter extends RecyclerView.Adapter<VideoFileListAdapter.FileViewHolder> {
     private List<FileInfo> fileItemList;
     private Context context;
 
-    public FileListAdapter(List<FileInfo> folderList, Context context) {
+    public VideoFileListAdapter(List<FileInfo> folderList, Context context) {
         this.fileItemList = folderList;
         this.context = context;
     }

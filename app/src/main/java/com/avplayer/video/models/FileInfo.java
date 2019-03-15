@@ -6,6 +6,7 @@ package com.avplayer.video.models;
 public class FileInfo {
     private String fileName;
     private String filePath;
+    private boolean isSelected;
 
     public String getFileName() {
         return fileName;
@@ -23,11 +24,20 @@ public class FileInfo {
         this.filePath = filePath;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
     @Override
     public String toString() {
         return "FileInfo{" +
                 "fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
+                ", isSelected=" + isSelected +
                 '}';
     }
 }

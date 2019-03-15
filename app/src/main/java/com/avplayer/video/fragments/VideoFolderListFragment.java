@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.avplayer.R;
-import com.avplayer.video.adapters.FolderListAdapter;
+import com.avplayer.video.adapters.VideoFolderListAdapter;
 import com.avplayer.video.models.Folder;
 
 import java.io.File;
@@ -27,12 +27,12 @@ import java.util.Locale;
 /**
  * Created by shivappar.b on 08-03-2019
  */
-public class FolderListFragment extends Fragment {
-    public static final String TAG = "FolderListFragment";
+public class VideoFolderListFragment extends Fragment {
+    public static final String TAG = "VideoFolderListFragment";
     RecyclerView recyclerView;
-    FolderListAdapter adapter;
+    VideoFolderListAdapter adapter;
 
-    public FolderListFragment() {
+    public VideoFolderListFragment() {
 
     }
 
@@ -40,11 +40,12 @@ public class FolderListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_folder_list, container, false);
-        adapter = new FolderListAdapter(getVideoFolderList(), getContext());
+        adapter = new VideoFolderListAdapter(getVideoFolderList(), getContext());
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+        view.findViewById(R.id.ll_play).setVisibility(View.GONE);
         return view;
     }
 

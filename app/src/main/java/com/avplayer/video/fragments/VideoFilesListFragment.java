@@ -6,13 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.avplayer.R;
-import com.avplayer.video.adapters.FileListAdapter;
+import com.avplayer.video.adapters.VideoFileListAdapter;
 import com.avplayer.video.models.FileInfo;
 
 import java.io.File;
@@ -25,17 +24,17 @@ import java.util.Locale;
 /**
  * Created by shivappar.b on 08-03-2019
  */
-public class FilesListFragment extends Fragment {
-    public static final String TAG = "FilesListFragment";
+public class VideoFilesListFragment extends Fragment {
+    public static final String TAG = "VideoFilesListFragment";
     RecyclerView recyclerView;
-    FileListAdapter adapter;
+    VideoFileListAdapter adapter;
 
-    public FilesListFragment() {
+    public VideoFilesListFragment() {
 
     }
 
-    public static FilesListFragment getInstance(String folderPath) {
-        FilesListFragment filesFragment = new FilesListFragment();
+    public static VideoFilesListFragment getInstance(String folderPath) {
+        VideoFilesListFragment filesFragment = new VideoFilesListFragment();
         Bundle bundle = new Bundle();
         bundle.putString("path", folderPath);
         filesFragment.setArguments(bundle);
@@ -49,11 +48,12 @@ public class FilesListFragment extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             String folderName = bundle.getString("path");
-            adapter = new FileListAdapter(getVideoList(folderName), getActivity());
+            adapter = new VideoFileListAdapter(getVideoList(folderName), getActivity());
             recyclerView = view.findViewById(R.id.recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setHasFixedSize(true);
             recyclerView.setAdapter(adapter);
+            view.findViewById(R.id.ll_play).setVisibility(View.GONE);
         }
         return view;
     }
