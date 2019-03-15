@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.avplayer.R;
 import com.avplayer.audio.adapters.AudioFileListAdapter;
+import com.avplayer.helper.FileUtilsHelper;
 import com.avplayer.video.models.FileInfo;
 
 import java.io.File;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -149,7 +151,7 @@ public class AudioFilesListFragment extends Fragment implements SeekBar.OnSeekBa
         }
         try {
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setDataSource(getContext(), Uri.parse(mFileUrl));
+            mediaPlayer.setDataSource(mFileUrl);
             setAudioFileLength(mFileUrl);
             mediaPlayer.prepare();
             mediaPlayer.start();
@@ -159,6 +161,11 @@ public class AudioFilesListFragment extends Fragment implements SeekBar.OnSeekBa
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void deleteFiles() {
+        HashMap<Integer, FileInfo> filesToDelete = adapter.getFileToDelete();
+        adapter.deleteFiles(filesToDelete);
     }
 
     @Override
@@ -193,6 +200,9 @@ public class AudioFilesListFragment extends Fragment implements SeekBar.OnSeekBa
             case R.id.iv_previous:
                 break;
             case R.id.iv_next:
+                break;
+            case R.id.iv_delete:
+                deleteFiles();
                 break;
         }
     }

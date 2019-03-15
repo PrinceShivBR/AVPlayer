@@ -38,7 +38,7 @@ public class AudioFolderAdapter extends RecyclerView.Adapter<AudioFolderAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull AudioFolderAdapter.FolderViewHolder folderHolder, final int i) {
-        folderHolder.tvFolderName.setText(getCapitalisedWord(folderList.get(i).getFolderName()));
+        folderHolder.tvFolderName.setText((folderList.get(i).getFolderName()));
         folderHolder.tvVideoCount.setText(getVideosCount(folderList.get(i).getVideoCount()));
         folderHolder.ivNewFiles.setVisibility(folderList.get(i).getIsVisible());
         folderHolder.cvFolder.setOnClickListener(new View.OnClickListener() {

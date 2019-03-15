@@ -31,11 +31,7 @@
         <activity
             android:name=".audio.activity.AudioFolderListActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".audio.activity.AudioPlayActivity" />
 
-        <service
-            android:name=".audio.MediaPlayingService"
-            android:exported="false" />
     </application>
 
 </manifest>

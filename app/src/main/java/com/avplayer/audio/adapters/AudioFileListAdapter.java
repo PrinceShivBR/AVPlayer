@@ -13,9 +13,15 @@ import android.widget.TextView;
 
 import com.avplayer.R;
 import com.avplayer.audio.activity.AudioFolderListActivity;
+import com.avplayer.helper.FileUtilsHelper;
 import com.avplayer.video.models.FileInfo;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by shivappar.b on 13-03-2019
@@ -24,10 +30,12 @@ public class AudioFileListAdapter extends RecyclerView.Adapter<AudioFileListAdap
         implements View.OnClickListener {
     private List<FileInfo> fileItemList;
     private Context context;
+    private HashMap<Integer, FileInfo> fileToDelete;
 
-    public AudioFileListAdapter(List<FileInfo> folderList, Context context) {
-        this.fileItemList = folderList;
+    public AudioFileListAdapter(List<FileInfo> fileList, Context context) {
+        this.fileItemList = fileList;
         this.context = context;
+        fileToDelete = new HashMap<>();
     }
 
     @NonNull
@@ -37,17 +45,34 @@ public class AudioFileListAdapter extends RecyclerView.Adapter<AudioFileListAdap
         return new FileViewHolder(view);
     }
 
+    public HashMap<Integer, FileInfo> getFileToDelete() {
+        return fileToDelete;
+    }
+
+    public void deleteFiles(HashMap<Integer, FileInfo> fileList) {
+        for (Map.Entry<Integer, FileInfo> info : fileList.entrySet()) {
+            FileUtilsHelper.deleteFiles(info.getValue());
+            notifyItemRemoved(info.getKey());
+        }
+    }
+
     @Override
     public void onBindViewHolder(@NonNull FileViewHolder fileViewHolder, final int i) {
+        final FileInfo info = fileItemList.get(i);
         fileViewHolder.tvFileName.setText(fileItemList.get(i).getFileName());
         fileViewHolder.tvFileName.setTag(fileItemList.get(i).getFilePath());
         fileViewHolder.tvFileName.setOnClickListener(this);
         fileViewHolder.ivOptions.setOnClickListener(this);
+        fileViewHolder.cbSelect.setOnCheckedChangeListener(null);
+        fileViewHolder.cbSelect.setChecked(info.isSelected());
         fileViewHolder.cbSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-
+                info.setSelected(isChecked);
+                if (isChecked) {
+                    fileToDelete.put(i, fileItemList.get(i));
+                } else {
+                    fileToDelete.remove(i);
                 }
             }
         });
@@ -63,16 +88,13 @@ public class AudioFileListAdapter extends RecyclerView.Adapter<AudioFileListAdap
         switch (v.getId()) {
             case R.id.tv_file_name:
                 ((AudioFolderListActivity) context).playMediaFile((String) v.getTag());
-
-//                AudioPlayActivity playActivity = new AudioPlayActivity((String) v.getTag());
-//                playActivity.playMedia();
                 break;
             case R.id.iv_options:
                 break;
         }
     }
 
-    class FileViewHolder extends RecyclerView.ViewHolder {
+    class FileViewHolder extends RecyclerView.ViewHolder /*implements CompoundButton.OnCheckedChangeListener*/ {
         TextView tvFileName;
         ImageView ivOptions;
         CheckBox cbSelect;
@@ -81,7 +103,7 @@ public class AudioFileListAdapter extends RecyclerView.Adapter<AudioFileListAdap
             super(itemView);
             tvFileName = itemView.findViewById(R.id.tv_file_name);
             ivOptions = itemView.findViewById(R.id.iv_options);
-            cbSelect=itemView.findViewById(R.id.cb_delete);
+            cbSelect = itemView.findViewById(R.id.cb_delete);
         }
     }
 }

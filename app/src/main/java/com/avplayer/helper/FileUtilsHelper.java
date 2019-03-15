@@ -1,7 +1,8 @@
 package com.avplayer.helper;
 
+import com.avplayer.video.models.FileInfo;
+
 import java.io.File;
-import java.util.List;
 
 /**
  * Created by shivappar.b on 15-03-2019
@@ -19,11 +20,10 @@ public class FileUtilsHelper {
         return false;
     }
 
-    public static void deleteFiles(List<File> fileList) {
-        if (fileList.size() > 0) {
-            for (File file : fileList) {
-                file.delete();
-            }
+    public static void deleteFiles(FileInfo fileToDelete) {
+        File file = new File(fileToDelete.getFilePath());
+        if (file.exists()) {
+            file.delete();
         }
     }
 }

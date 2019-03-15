@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.avplayer.R;
@@ -14,7 +16,7 @@ import com.avplayer.audio.fragments.AudioFoldersFragment;
 /**
  * Created by shivappar.b on 13-03-2019
  */
-public class AudioFolderListActivity extends AppCompatActivity {
+public class AudioFolderListActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = "AudioFolderListActivity";
     private Toolbar toolbar;
     private TextView toolBarText;
@@ -29,6 +31,8 @@ public class AudioFolderListActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             setSupportActionBar(toolbar);
         }
+        ImageView ivDelete=findViewById(R.id.iv_delete);
+        ivDelete.setOnClickListener(this);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.root, new AudioFoldersFragment(), "MainFragment");
         transaction.addToBackStack("MainFragment");
@@ -61,5 +65,13 @@ public class AudioFolderListActivity extends AppCompatActivity {
             toolBarText.setText("Folders");
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        AudioFilesListFragment filesListFragment = (AudioFilesListFragment) getSupportFragmentManager().findFragmentByTag("AudioFilesListFragment");
+        if (filesListFragment != null) {
+            filesListFragment.deleteFiles();
+        }
     }
 }

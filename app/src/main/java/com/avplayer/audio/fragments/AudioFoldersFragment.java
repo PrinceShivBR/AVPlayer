@@ -55,17 +55,18 @@ public class AudioFoldersFragment extends Fragment {
     public List<Folder> getAudioFolderList() {
         List<Folder> folderList = new ArrayList<>();
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
         String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
         String[] projection = {MediaStore.Audio.AudioColumns.DATA};
-        Cursor c = getContext().getContentResolver().query(uri, projection, selection, null, sortOrder);
+        Cursor c = getContext().getContentResolver().query(uri, projection, null, null, sortOrder);
         if (c != null && c.getCount() > 0) {
             Folder folder = new Folder();
+            System.out.println("count------" + c.getCount());
             while (c.moveToNext()) {
                 String filePath = c.getString(0);
+                System.out.println(filePath);
                 File file = new File(filePath);
 
-                String folderName = file.getParentFile().getName();
+                String folderName = file.getParent();
                 if (folderName.equals(folder.getFolderName()) || isFolderExist(folderList, folderName))
                     continue;
                 File folderFile = new File(file.getParent());
@@ -81,12 +82,16 @@ public class AudioFoldersFragment extends Fragment {
                         fileCount++;
                     }
                 }
+//                folder.setFolderName(file.getParentFile().getName());
                 folder.setFolderName(folderName);
                 folder.setFolderPath(file.getParentFile().getAbsolutePath());
                 folder.setVideoCount(String.valueOf(fileCount));
-                if (fileCount != 0)
+                if (fileCount != 0) {
                     folderList.add(folder);
+                    System.out.println("folder name----" + file.getParentFile().getAbsolutePath() + "\tcount----" + fileCount);
+                }
             }
+
             c.close();
         }
 
@@ -99,10 +104,10 @@ public class AudioFoldersFragment extends Fragment {
         return folderList;
     }
 
-    public boolean isFolderExist(final List<Folder> list, final String folderName) {
+    public boolean isFolderExist(final List<Folder> list, final String folderPath) {
         boolean result = false;
         for (Folder folder : list) {
-            if (folder.getFolderName().equals(folderName)) {
+            if (folder.getFolderPath().equals(folderPath)) {
                 result = true;
                 break;
             }
