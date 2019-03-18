@@ -22,7 +22,7 @@ public class VideoFolderListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_folder_list);
+        setContentView(R.layout.activity_video_folder_list);
         toolbar = findViewById(R.id.tool_bar);
         toolBarText = findViewById(R.id.tv_toolbar_text);
         toolBarText.setText("Folders");

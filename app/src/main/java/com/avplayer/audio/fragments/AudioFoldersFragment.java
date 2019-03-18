@@ -46,9 +46,6 @@ public class AudioFoldersFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-
-        LinearLayout layout = view.findViewById(R.id.ll_play);
-        layout.setVisibility(View.GONE);
         return view;
     }
 

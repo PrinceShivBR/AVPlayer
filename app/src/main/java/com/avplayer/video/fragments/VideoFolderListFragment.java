@@ -45,7 +45,6 @@ public class VideoFolderListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-        view.findViewById(R.id.ll_play).setVisibility(View.GONE);
         return view;
     }
 
