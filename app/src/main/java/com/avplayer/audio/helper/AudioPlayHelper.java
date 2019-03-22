@@ -35,18 +35,19 @@ public class AudioPlayHelper extends Service implements MediaPlayer.OnErrorListe
         mediaPlayer = new MediaPlayer();
     }
 
-    private void preparePlayer(String fileUrl){
-        try {
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setDataSource(fileUrl);
-//            setAudioFileLength(mFileUrl);
-            mediaPlayer.prepare();
-//            seekBar.setProgress(mediaPlayer.getCurrentPosition());
-//            ivPlay.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_pause));
-//            handler.postDelayed(SongDurationUpdater, 100);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void prepareMediaPlayer() {
+    }
+
+    private void playMedia() {
+    }
+
+    private void stopMediaPlayer() {
+    }
+
+    private void playNextFile() {
+    }
+
+    private void playPreviousFile() {
     }
 
     @Override

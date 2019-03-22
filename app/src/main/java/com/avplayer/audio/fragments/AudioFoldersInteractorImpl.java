@@ -54,8 +54,8 @@ public class AudioFoldersInteractorImpl implements IAudioFoldersInteractor {
                         fileCount++;
                     }
                 }
-//                folder.setFolderName(file.getParentFile().getName());
-                folder.setFolderName(folderName);
+                folder.setFolderName(file.getParentFile().getName());
+//                folder.setFolderName(folderName);
                 folder.setFolderPath(file.getParentFile().getAbsolutePath());
                 folder.setVideoCount(String.valueOf(fileCount));
                 if (fileCount != 0) {
