@@ -1,8 +1,8 @@
 package com.avplayer.audio.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +16,7 @@ import com.avplayer.audio.activity.AudioFolderListActivity;
 import com.avplayer.helper.FileUtilsHelper;
 import com.avplayer.video.models.FileInfo;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
